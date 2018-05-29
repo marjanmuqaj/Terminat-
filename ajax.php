@@ -9,7 +9,6 @@
 			$rowID = $conn->real_escape_string($_POST['rowID']);
 			$sql = $conn->query("SELECT fullname,numri,data,ora,kapari,borgji FROM terminat WHERE id='$rowID'");
             $data = $sql->fetch_array();
-
 			$jsonArray = array(
 				'fullname' => $data['fullname'],
 				'numri' => $data['numri'],
@@ -44,7 +43,7 @@
 					$response .= '
 						<tr>
 							<td  style="text-align: center; vertical-align: middle;" >'.$data["id"].'</td>
-							<td style="text-align: center; vertical-align: middle;" id="terminat_'.$data["id"].'">'.$data["fullname"].'</td>
+							<td  style="text-align: center; vertical-align: middle;" id="terminat_'.$data["id"].'">'.$data["fullname"].'</td>
 							<td style="text-align: center; vertical-align: middle;" id="terminat_'.$data["id"].'">'.$data['ora'].'</td>
 							<td style="text-align: center; vertical-align: middle;" id="terminat_'.$data["id"].'">'.$data["data"].'</td>
 							<td style="text-align: center; vertical-align: middle;" id="terminat_'.$data["id"].'">'.$data["borgji"].'</td>
@@ -82,6 +81,9 @@
 		$kapari=$conn->real_escape_string($_POST['kapari']);
 		//$borgji=$conn->real_escape_string($_POST['borgji']);
 		$kategoria=$conn->real_escape_string($_POST['kategoria']);
+        require 'functions.php';
+        session_start();
+        $user=$_SESSION['username'];
 
 		if ($_POST['key'] == 'updateRow') {
 			if ($black = $conn->query("SELECT id FROM blacklisttable WHERE fullname = '$name' OR numri='$numri'"))
@@ -89,7 +91,7 @@
                 if ($black->num_rows > 0)
                     exit("Ky Termin eshte ne listen e zez!");
                 else
-                    $conn->query("UPDATE terminat SET fullname='$name', numri='$numri', data='$data', ora='$ora', kapari='$kapari',borgji='$kategoria' WHERE id='$rowID'");
+                    $conn->query("UPDATE terminat SET fullname='$name', numri='$numri', data='$data', ora='$ora', kapari='$kapari',borgji='$kategoria',users_of_created='$user' WHERE id='$rowID'");
                 exit('success');
             }
 		}
@@ -107,10 +109,6 @@
             else {
 
                     $created = date("Y-m-d H:i:s", time());
-                    require 'functions.php';
-                    session_start();
-                    $user=$_SESSION['username'];
-
 
                     $conn->query("INSERT INTO terminat (fullname,numri,data,ora,kapari,borgji,created,users_of_created)
 							VALUES ('$name','$numri','$data','$ora','$kapari','$kategoria','$created','$user')");

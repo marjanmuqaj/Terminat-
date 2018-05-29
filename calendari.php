@@ -13,15 +13,16 @@ check_user();
 <head>
     <title>Calendari</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>-->
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script src="js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-
+    <link rel="stylesheet" href="css/bootstrap.css">
     <style>
         .navbar-inverse .navbar-nav>li>a {
             color: #ffffff;
@@ -61,6 +62,11 @@ check_user();
                 -ms-overflow-style: -ms-autohiding-scrollbar;
                 border: 1px solid #000;
             }
+            .modal-dialog {
+                position: relative;
+                width: auto;
+                margin: 25px;
+            }
         }
         .table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th,
         .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th,
@@ -85,10 +91,10 @@ check_user();
             <ul class="nav navbar-nav">
                 <li class="active"><a href="home.php">Menu</a></li>
                 <li><a href="index.php">Shto Termin</a></li>
-                <li><a href="data.php">Terminat Sod</a></li>
-                <li><a href="calendari.php">Calendari</a></li>
+                <li><a href="data.php">Terminat Sot</a></li>
+                <li><a href="calendari.php">Kalendari</a></li>
                 <li><a href="blacklist.php">Lista e Zez</a></li>
-                <li><a href="createdtoday.php">Tkrijun sod</a></li>
+                <li><a href="createdtoday.php">Te krijun sot</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="" style="height: 50px;"><a href="#" style="height: 50px;"><?php
@@ -115,15 +121,20 @@ check_user();
 
                 <div class="modal-body">
                     <div id="editContent">
-                        <input type="text" class="form-control" placeholder="Emri i Plote..." id="countryName"><br>
+                        <input type="text" class="form-control" placeholder="Sheno Emrin dhe Mbiemrin" id="countryName"><br>
                         <input type="text" name="Numri" class="form-control" id="numri" placeholder="Numri i Telefonit"><br>
                         <input type="date" name="data" class="form-control" id="data" placeholder="Sheno Daten"><br>
                         <input type="time" name="ora"  class="form-control" id="ora" placeholder="Ora"><br>
                         <input type="Number" name="kapari" class="form-control" id="kapari" placeholder="kapari"><br>
 
-                        <label class="checkbox-inline" style="font-weight: bold;"><input type="checkbox" name="kategoria[]" class="kategoria" value="Grim">Grim</label>
-                        <label class="checkbox-inline" style="font-weight: bold;"><input type="checkbox" name="kategoria[]" class="kategoria" value="Frizur">Frizur</label>
-                        <label class="checkbox-inline" style="font-weight: bold;"><input type="checkbox" name="kategoria[]" class="kategoria" value="Fenerim">Fenerim</label>
+                        <label class="checkbox-grup" style="font-weight: bold;"><input type="checkbox" name="kategoria[]" class="kategoria" value="Grim">Grim&nbsp&nbsp</label>
+                        <label class="checkbox-grup" style="font-weight: bold;"><input type="checkbox" name="kategoria[]" class="kategoria" value="Frizur">Frizur&nbsp&nbsp</label>
+                        <label class="checkbox-grup" style="font-weight: bold;"><input type="checkbox" name="kategoria[]" class="kategoria" value="Fenerim">Fenerim&nbsp&nbsp</label>
+                        <label class="checkbox-grup" style="font-weight: bold;"><input type="checkbox" name="kategoria[]" class="kategoria" value="Premje">Premje&nbsp&nbsp</label>
+                        <label class="checkbox-grup" style="font-weight: bold;"><input type="checkbox" name="kategoria[]" class="kategoria" value="Shatir">Shatir&nbsp&nbsp</label>
+                        <label class="checkbox-grup" style="font-weight: bold;"><input type="checkbox" name="kategoria[]" class="kategoria" value="Ngjyrosje">Ngjyrosje&nbsp&nbsp</label>
+                        <label class="checkbox-grup" style="font-weight: bold;"><input type="checkbox" name="kategoria[]" class="kategoria" value="Ombre">Ombre&nbsp&nbsp</label>
+                        <label class="checkbox-grup" style="font-weight: bold;"><input type="checkbox" name="kategoria[]" class="kategoria" value="Thoj">Thoj&nbsp&nbsp</label>
 
                         <!--<textarea class="form-control" id="shortDesc" placeholder="Short Country Description"></textarea><br>-->
 
@@ -134,7 +145,7 @@ check_user();
 
                 <div class="modal-footer">
                     <input type="button" class="btn btn-danger" data-dismiss="modal" value="Anulo" id="closeBtn">
-                    <input type="button" id="manageBtn" onclick="manageData('addNew')" value="Ruaj" class="btn btn-success">
+                    <input type="button" id="manageBtn" onclick="manageData('addNew')" value="Ruaj Terminin" class="btn btn-success">
                 </div>
             </div>
         </div>
@@ -167,10 +178,11 @@ check_user();
                     <th width="15%">Rregullimi</th>
                     <th  width="12%">Numri</th>
                     <th width="12%">Kapari</th>
+                    <th width="12%">Krijuar Nga</th>
                 </tr>
                 </thead>
                 <tr>
-                    <td colspan="7" align="left" style="color: red;">............Per te Shfaqur te Dhena Filtro se Pari...........</td>
+                    <td colspan="8" align="left" style="color: red;">............Per te Shfaqur te Dhena Filtro se Pari...........</td>
                 </tr>
             </table>
         </div>
@@ -205,7 +217,7 @@ check_user();
             $("#kategoria").val("");
             $("#countryName").val("");
             $("#closeBtn").fadeIn();
-            $("#manageBtn").attr('value', 'Ruaj').attr('onclick', "manageData('addNew')").fadeIn();
+            $("#manageBtn").attr('value', 'Ruaj Terminin').attr('onclick', "manageData('addNew')").fadeIn();
         });
     });
     $(document).ready(function(){
@@ -282,6 +294,10 @@ check_user();
                     if (response != "success")
                     {
                         alert(response);
+                        if(response =="Termini u Shtua me Sukses!")
+                        {
+                            $("#tableManager").modal('hide');
+                        }
                     }
                     else
                     {

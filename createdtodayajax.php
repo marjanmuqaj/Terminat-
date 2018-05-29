@@ -3,28 +3,29 @@
  * Created by PhpStorm.
  * User: Hugo
  * Date: 23 Mar 2018
- * Time: 17:50
- *
+ * Time: 18:43
  */
+
 $connect = mysqli_connect("localhost", "root", "root", "app");
 $output = '';
-$today = date('d/m/Y');
 $query = "  
-           SELECT * FROM terminat WHERE(data)='$today' ORDER BY ora";
+           SELECT * FROM terminat WHERE DATE(`created`) = CURDATE() ORDER BY created";
 $result = mysqli_query($connect, $query);
 $output .= '  
   <div class="table-responsive">
            <table class="table table-bordered" style="font-weight: bold;">  
-           <h3 align="center"><b>Terminet Sod</h3>
-                <thead style="background-color: #4cae4c; font-weight: bold;">
+           <h3 align="center"><b>Terminet e Krijuara Sot</b></h3>
+                <thead style="background-color: #4cae4c; font-weight: bold; text-align: center;">
                 <tr>  
                      <th width="2%">ID</th>
-                     <th width="20%">Emri dhe Mbiemri</th>
+                     <th width="10%">Emri dhe Mbiemri</th>
                      <th width="5%">Ora</th>
                      <th width="10%">Data</th>
-                     <th width="15%">Lloji</th>
+                     <th width="10%">Lloji</th>
                      <th width="10%"">Numri</th>
-                     <th width="5%">Kapari</th>    
+                     <th width="5%">Kapari</th>  
+                     <th width="10%">Data e Krijimit</th>
+                     <th width="7%">Krijuar Nga</th>    
                 </tr>
                 </thead>
       ';
@@ -39,7 +40,9 @@ if (mysqli_num_rows($result) > 0) {
                           <td>' . $row["data"] . '</td>  
                           <td>' . $row["borgji"] . '</td>  
                           <td>' . $row["numri"] . '</td>  
-                          <td>' . $row["kapari"] . '€</td>    
+                          <td>' . $row["kapari"] . '€</td>
+                          <td>' . $row["created"] . '</td>
+                          <td>' . $row["users_of_created"] . '</td>     
                      </tr>  
             </tbody>
                 ';
@@ -47,7 +50,7 @@ if (mysqli_num_rows($result) > 0) {
 } else {
     $output .= '  
                 <tr>  
-                     <td colspan="7" align="center">Nuk u gjend asnje Termin me kete date</td>  
+                     <td colspan="9" align="center">Nuk u gjend asnje Termin me kete date</td>  
                 </tr>  
            ';
 }

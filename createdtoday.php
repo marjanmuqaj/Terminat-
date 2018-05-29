@@ -5,6 +5,7 @@
  * Date: 23 Mar 2018
  * Time: 18:41
  */
+
 require 'functions.php';
 check_user();
 ?>
@@ -14,14 +15,14 @@ check_user();
 <head>
     <title>Terminat e Krijun Sod</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
     <script src="js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <style>
         .navbar-inverse .navbar-nav>li>a {
             color: #ffffff;
@@ -56,10 +57,10 @@ check_user();
             <ul class="nav navbar-nav">
                 <li class="active"><a href="home.php">Menu</a></li>
                 <li><a href="index.php">Shto Termin</a></li>
-                <li><a href="data.php">Terminat Sod</a></li>
-                <li><a href="calendari.php">Calendari</a></li>
+                <li><a href="data.php">Terminat Sot</a></li>
+                <li><a href="calendari.php">Kalendari</a></li>
                 <li><a href="blacklist.php">Lista e Zez</a></li>
-                <li><a href="createdtoday.php">Tkrijun sod</a></li>
+                <li><a href="createdtoday.php">Te krijun sot</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="" style="height: 50px;"><a href="#" style="height: 50px;"><?php
@@ -84,7 +85,7 @@ check_user();
     <br />
     <div id="order_table">
         <div class="table-responsive">
-            <table class="table table-bordered" style="border: #0f0f0f">
+            <table class="table table-bordered" style="border: #0f0f0f;text-align: center;">
                 <tr>
                     <th width="2%">ID</th>
                     <th width="20%">Emri dhe Mbiemri</th>
@@ -93,6 +94,8 @@ check_user();
                     <th width="5%" id="mi">Ora</th>
                     <th  width="10%"">Numri</th>
                     <th width="5%">Kapari</th>
+                    <th width="5%">Data e Krijimit</th>
+                    <th width="7%">Krijuar Nga</th>
                 </tr>
 
             </table>

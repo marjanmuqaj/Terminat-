@@ -13,14 +13,12 @@ check_user();
 <head>
     <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">-->
     <script type="text/javascript" src="js/bootstrap.js"></script>
-    <script type="text/javascript">
-    </script>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -59,10 +57,10 @@ check_user();
                             <li><a href="home.php">Menu</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="index.php">Shto Termin</a></li>
-                            <li><a href="data.php">Terminat Sod</a></li>
-                            <li><a href="Calendari">Calendari</a></li>
+                            <li><a href="data.php">Terminat Sot</a></li>
+                            <li><a href="Calendari.php">Kalendari</a></li>
                             <li><a id="verifikim" href="blacklist.php">Lista e Zez</a></li>
-                            <li><a href="createdtoday.php">Tkrujm sod</a></li>
+                            <li><a href="createdtoday.php">Te krijun sod</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="logout.php">Dil</a></li>
                         </ul>
@@ -79,10 +77,10 @@ check_user();
 
             <div class="button">
                 <input type="button" class="btn-block" class="deko" id="login-button" value="Shto Termin" onclick="window.location='index.php';"  />
-                <input type="button" class="btn-block" class="deko" id="login-button" value="Terminat Sod" onclick="window.location='data.php';"/>
-                <input type="button" class="btn-block" class="deko" id="login-button" value="Calendari" onclick="window.location='calendari.php';"/>
+                <input type="button" class="btn-block" class="deko" id="login-button" value="Terminat Sot" onclick="window.location='data.php';"/>
+                <input type="button" class="btn-block" class="deko" id="login-button" value="Kalendari" onclick="window.location='calendari.php';"/>
                 <input type="button" class="btn-block" class="black" id="loginn-buttonn" value="Lista e Zez" onclick="window.location='blacklist.php';"/>
-                <input type="button" class="btn-block" class="deko" id="login-button" value="Terminat e Krijun Sod" onclick="window.location='createdtoday.php';"/>
+                <input type="button" class="btn-block" class="deko" id="login-button" value="Te Krijun Sot" onclick="window.location='createdtoday.php';"/>
             </div>
         </div>
 

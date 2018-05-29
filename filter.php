@@ -49,7 +49,7 @@ $connect = mysqli_connect("localhost", "root", "root", "app");
         } else {
             $output .= '  
                 <tr>  
-                     <td colspan="7" align="center">Nuk u gjend asnje Termin me kete date</td>  
+                     <td colspan="8" align="center">Nuk u gjend asnje Termin me kete date</td>  
                 </tr>  
            ';
         }
