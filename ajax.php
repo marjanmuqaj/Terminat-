@@ -3,7 +3,7 @@
 
 	if (isset($_POST['key'])) {
 
-		$conn = new mysqli('localhost', 'root', 'root', 'app');
+		$conn = new mysqli('localhost', 'flato_root', 'tregom258', 'flato_app');
 
 		if ($_POST['key'] == 'getRowData') {
 			$rowID = $conn->real_escape_string($_POST['rowID']);
@@ -100,6 +100,11 @@
             if($black->num_rows > 0)
             {
                 exit("Ky Termin eshte ne listen e zez!");
+            }
+            $test = $conn->query("SELECT * FROM terminat WHERE fullname='$name'AND numri='$numri'AND data='$data'AND ora='$ora'AND kapari='$kapari'");
+            if($test->num_rows > 0)
+            {
+                exit("Ky Termin Ekziston e tek terminat!");
             }
 		    //$sql = $conn->query("SELECT id FROM terminat WHERE fullname = '$name'");
 			//if ($sql->num_rows > 0)
